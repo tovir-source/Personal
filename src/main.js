@@ -3,28 +3,41 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { animate, stagger } from 'animejs';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import 'photoswipe/style.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const favorites = [
-  ['01', 'Food & drinks', 'Hamburgers, empanadas, and hot chocolate with queso de hoja.', 'food'],
-  ['02', 'Music', 'Heavy metal, epic metal, and Nordic-inspired sounds.', 'music'],
-  ['03', 'Movies & TV', 'Fantasy and science fiction worlds, from Middle-earth to Futurama.', 'fantasy'],
-  ['04', 'Sports', 'Walking while listening to music or the news early in the morning.', 'sports'],
-  ['05', 'Activities', 'Video games, computer-aided design, and programming.', 'activities'],
-  ['06', 'Favorite places', 'Bucaramanga, Santander, natural parks, cafés, and sports venues.', 'places'],
-  ['07', 'Dream destinations', 'Norway, Sweden, Finland, New Zealand, and the United Kingdom.', 'travel'],
+  ['01', 'Food & drinks', 'I like hamburgers, empanadas, and hot chocolate with cheese.', 'food'],
+  ['02', 'Music', 'I like heavy metal and epic metal from Europe.', 'music'],
+  ['03', 'Movies & TV', 'I like fantasy and science fiction stories.', 'fantasy'],
+  ['04', 'Sports', 'I walk in the morning and listen to music or the news.', 'sports'],
+  ['05', 'Activities', 'I like video games, computer design, and programming.', 'activities'],
+  ['06', 'Favorite places', 'I like Bucaramanga, Santander, parks, cafés, and sport places.', 'places'],
+  ['07', 'Dream destinations', 'I want to visit Norway, Sweden, Finland, New Zealand, and the UK.', 'travel'],
 ];
 
 const favoriteDetails = {
-  food: 'I really enjoy hamburgers and different kinds of empanadas. My favorite drink is hot chocolate with queso de hoja (fresh cheese).',
-  music: 'I enjoy Metallica, Iron Maiden, Slipknot, Sonata Arctica, and Rhapsody. One favorite song is “Dawn of Victory” by Rhapsody.',
-  fantasy: 'I love The Lord of the Rings, The Hobbit, Harry Potter, Marvel movies, and Futurama for their imaginative worlds and memorable characters.',
-  sports: 'I like going out for a walk while listening to music or the news in the mornings, around 5:00 a.m.',
-  activities: 'I enjoy video games, computer-aided design, and programming.',
-  places: 'I enjoy Bucaramanga and the beautiful destinations of Santander: Chicamocha, La Mesa de los Santos, Cerro del Santísimo, Barichara, Girón, and San Gil.',
-  travel: 'I would love to visit the Nordic countries for their landscapes and musical culture, New Zealand for its film locations, and the United Kingdom.',
+  food: 'I like hamburgers and empanadas. My favorite drink is hot chocolate with fresh cheese.',
+  music: 'I like Metallica, Iron Maiden, Slipknot, Sonata Arctica, and Rhapsody. My favorite song is “Dawn of Victory”.',
+  fantasy: 'I like The Lord of the Rings, The Hobbit, Harry Potter, Marvel movies, and Futurama.',
+  sports: 'I like walking in the morning at about 5:00 a.m. I listen to music or the news.',
+  activities: 'I like video games, computer-aided design, and programming.',
+  places: 'I like Bucaramanga and beautiful places in Santander: Chicamocha, La Mesa de los Santos, Barichara, Girón, and San Gil.',
+  travel: 'I want to visit the Nordic countries, New Zealand, and the United Kingdom.',
 };
+
+const favoriteImageData = {
+  food: { src: '/images/favorite-food.png', width: 768, height: 768, alt: 'Hamburger, empanadas, and hot chocolate' },
+  music: { src: '/images/favorite-music.png', width: 768, height: 768, alt: 'Victor’s music collection' },
+  fantasy: { src: '/images/favorite-fantasy.png', width: 768, height: 768, alt: 'Books, movies, and series collection' },
+  sports: { src: '/images/favorite-sports.png', width: 1024, height: 768, alt: 'Victor at a sports field' },
+  activities: { src: '/images/favorite-activities.png', width: 1024, height: 768, alt: 'Computer and design workspace' },
+  places: { src: '/images/favorite-places.png', width: 768, height: 768, alt: 'Travel photos from Santander' },
+  travel: { src: '/images/favorite-travel.png', width: 768, height: 768, alt: 'Travel plans for dream destinations' },
+};
+const favoriteKeys = Object.keys(favoriteImageData);
 
 const app = document.querySelector('#app');
 
@@ -49,9 +62,9 @@ app.innerHTML = `
       <div class="hero-copy reveal">
         <p class="eyebrow">PERSONAL WEBSITE / SENA / 2026</p>
         <h1><span class="hero-line">Hello,</span><span class="hero-line"><em>I'm Victor.</em></span></h1>
-        <p class="hero-role">Software development student.</p>
-        <p class="hero-intro">Based in Ipiales, Colombia.<br />Exploring technology, creativity, and digital experiences.</p>
-        <a class="text-link" href="#about">Discover more <span>↓</span></a>
+        <p class="hero-role">I am a software development student.</p>
+        <p class="hero-intro">I live in Ipiales, Colombia.<br />I like technology, design, and web pages.</p>
+        <a class="text-link" href="#about">Learn more about me <span>↓</span></a>
       </div>
       <div class="hero-visual reveal">
         <div class="portrait-frame">
@@ -68,27 +81,27 @@ app.innerHTML = `
     </section>
 
     <section id="about" class="content-section section-shell">
-      <div class="section-heading reveal"><span class="section-number">01 /</span><h2>A little about<br /><em>myself.</em></h2></div>
+      <div class="section-heading reveal"><span class="section-number">01 /</span><h2>About<br /><em>me.</em></h2></div>
       <div class="about-grid">
         <aside class="fact-list reveal">
           <div><span>Full name</span><strong>Victor Alfonso<br />Delgado Bolaños</strong></div>
-          <div><span>Age</span><strong>33 years old</strong></div>
+          <div><span>Age</span><strong>I am 33</strong></div>
           <div><span>From / based in</span><strong>Ipiales, Nariño<br />Colombia</strong></div>
           <div><span>Studies</span><strong>Software Analysis<br />&amp; Development (ADSO)</strong></div>
           <div><span>Institution</span><strong>SENA — CSCLI</strong></div>
         </aside>
         <div class="prose reveal">
-          <p class="lead">Hello! My name is Victor Alfonso Delgado Bolaños. I am 33 years old, and I am from Ipiales, Nariño, Colombia.</p>
-          <p>I live with my mother, my grandparents, two uncles, an aunt, a cousin, and our two dogs.</p>
-          <p>I am a student at SENA, studying Software Analysis and Development (ADSO) at the Centro Sur Colombiano de Logística Internacional (CSCLI).</p>
-          <p>I chose this program because I am interested in how technology can improve processes and solve real-world problems. I especially enjoy web development and digital tools.</p>
-          <p>I consider myself analytical, responsible, persevering, and curious. I like to plan my work, solve problems, and keep learning. I also value respect, clear communication, and teamwork.</p>
+          <p class="lead">Hello! My name is Victor Alfonso Delgado Bolaños. I am 33 and I am from Ipiales, Colombia.</p>
+          <p>I live with my mother, my grandparents, my uncles, my aunt, my cousin, and our two dogs.</p>
+          <p>I study Software Analysis and Development at SENA, at the CSCLI center.</p>
+          <p>I chose this program because I like technology. I enjoy web development and digital tools.</p>
+          <p>I am responsible, curious, and hardworking. I like to learn, solve problems, and work with other people.</p>
         </div>
       </div>
     </section>
 
     <section id="favorites" class="content-section favorites-section section-shell">
-      <div class="section-heading reveal"><span class="section-number">02 /</span><h2>Things that<br /><em>inspire me.</em></h2></div>
+      <div class="section-heading reveal"><span class="section-number">02 /</span><h2>Things I<br /><em>like.</em></h2></div>
       <div class="favorites-layout">
         <div class="favorite-list" role="list">
           ${favorites.map(([number, title, summary, key]) => `<button class="favorite-row reveal" data-favorite="${key}" role="listitem"><span class="row-number">${number}</span><span class="row-title">${title}</span><span class="row-summary">${summary}</span><span class="row-arrow">↗</span></button>`).join('')}
@@ -102,22 +115,22 @@ app.innerHTML = `
     </section>
 
     <section id="goals" class="content-section goals-section section-shell">
-      <div class="section-heading reveal"><span class="section-number">03 /</span><h2>Building<br /><em>my future.</em></h2></div>
+      <div class="section-heading reveal"><span class="section-number">03 /</span><h2>My<br /><em>future.</em></h2></div>
       <div class="goal-list">
-        <article class="goal reveal"><span class="goal-number">01</span><div><h3>Personal</h3><p>I want to keep learning, improve my skills, and become a better person. I want to maintain a healthy lifestyle through sports, especially swimming, while balancing my projects and free time.</p><p>I also dream of travelling, discovering new places, and attending concerts by my favorite bands.</p></div></article>
-        <article class="goal reveal"><span class="goal-number">02</span><div><h3>Academic</h3><p>My main academic goal is to successfully complete my ADSO program at SENA. I want to improve my English and continue learning about web development, emerging technologies, databases, and software architecture.</p><p>In the future, I would like to continue my education through advanced courses or higher education.</p></div></article>
-        <article class="goal reveal"><span class="goal-number">03</span><div><h3>Professional</h3><p>My professional goal is to become a skilled software developer. I would like to work on innovative websites, applications, and interactive digital experiences.</p><p>I want to combine programming, problem-solving, and visual design to create useful and creative technological solutions.</p></div></article>
+        <article class="goal reveal"><span class="goal-number">01</span><div><h3>Personal</h3><p>I want to keep learning and become a better person. I want to stay healthy with sports, especially swimming.</p><p>I also want to travel, see new places, and go to concerts.</p></div></article>
+        <article class="goal reveal"><span class="goal-number">02</span><div><h3>Academic</h3><p>I want to finish my ADSO program at SENA. I want to improve my English and learn more about web development, databases, and software.</p><p>Later, I want to take more courses or study at university.</p></div></article>
+        <article class="goal reveal"><span class="goal-number">03</span><div><h3>Professional</h3><p>I want to become a good software developer. I want to work on websites, apps, and digital projects.</p><p>I want to use programming and design to create useful solutions.</p></div></article>
       </div>
-      <div class="vision reveal"><span class="section-number">MY FIVE-YEAR VISION</span><p>In five years, I see myself working in the technology industry, developing interesting projects, improving my English, and continuing to grow both professionally and personally.</p><span class="vision-mark">→</span></div>
+      <div class="vision reveal"><span class="section-number">MY FIVE-YEAR VISION</span><p>In five years, I want to work in technology, create good projects, speak better English, and grow as a person.</p><span class="vision-mark">→</span></div>
     </section>
 
     <section id="video" class="content-section video-section section-shell">
-      <div class="section-heading reveal"><span class="section-number">04 /</span><h2>Meet<br /><em>me.</em></h2><p>A short introduction to my world.</p></div>
+      <div class="section-heading reveal"><span class="section-number">04 /</span><h2>My<br /><em>video.</em></h2><p>Here I talk about my life and my goals.</p></div>
       <div class="video-frame reveal">
         <video controls preload="metadata" poster="/images/video-poster.jpg"><source src="/videos/my-introduction.mp4" type="video/mp4" /></video>
-        <div class="video-fallback"><span class="play-mark">▶</span><p>My introduction video<br /><small>Add /videos/my-introduction.mp4 to activate this player.</small></p></div>
+        <div class="video-fallback"><span class="play-mark">▶</span><p>My introduction video<br /><small>Add /videos/my-introduction.mp4 to play it.</small></p></div>
       </div>
-      <p class="video-caption">Get to know me, my interests, my studies, and my future goals through this short presentation.</p>
+      <p class="video-caption">In this video, I talk about me, my interests, my studies, and my goals.</p>
     </section>
   </main>
 
@@ -130,6 +143,47 @@ app.innerHTML = `
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.site-nav');
 const languageToggle = document.querySelector('.language-toggle');
+const favoriteVisual = document.querySelector('.detail-visual');
+const favoriteTitles = Object.fromEntries(favorites.map(([, title, , key]) => [key, title]));
+const photoSwipeLightbox = new PhotoSwipeLightbox({
+  dataSource: favoriteKeys.map((key) => favoriteImageData[key]),
+  pswpModule: () => import('photoswipe'),
+});
+photoSwipeLightbox.on('uiRegister', () => {
+  const pswp = photoSwipeLightbox.pswp;
+  pswp.ui.registerElement({
+    name: 'favorite-caption',
+    order: 9,
+    isButton: false,
+    appendTo: 'root',
+    onInit: (element) => {
+      const title = document.createElement('strong');
+      const copy = document.createElement('span');
+      element.append(title, copy);
+
+      const updateCaption = () => {
+        const key = favoriteKeys[pswp.currIndex];
+        title.textContent = favoriteTitles[key];
+        copy.textContent = favoriteDetailsByLanguage[currentLanguage][key];
+      };
+
+      pswp.on('change', updateCaption);
+      updateCaption();
+    },
+  });
+});
+photoSwipeLightbox.init();
+favoriteVisual.setAttribute('role', 'button');
+favoriteVisual.setAttribute('tabindex', '0');
+favoriteVisual.setAttribute('aria-label', 'Open favorite image gallery');
+const openFavoriteGallery = () => photoSwipeLightbox.loadAndOpen(favoriteKeys.indexOf(activeFavoriteKey));
+favoriteVisual.addEventListener('click', openFavoriteGallery);
+favoriteVisual.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    openFavoriteGallery();
+  }
+});
 let currentLanguage = 'en';
 let activeFavoriteKey = 'food';
 
