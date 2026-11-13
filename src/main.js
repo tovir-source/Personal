@@ -1,4 +1,10 @@
 import './style.css';
+import '@fontsource/manrope/latin-400.css';
+import '@fontsource/manrope/latin-500.css';
+import '@fontsource/manrope/latin-600.css';
+import '@fontsource/manrope/latin-700.css';
+import '@fontsource/dm-mono/latin-400.css';
+import '@fontsource/dm-mono/latin-500.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -10,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const favorites = [
   ['01', 'Food & drinks', 'I like hamburgers, empanadas, and hot chocolate with cheese.', 'food'],
-  ['02', 'Music', 'I like heavy metal and epic metal from Europe.', 'music'],
+  ['02', 'Music', 'My favorite bands are Metallica, Iron Maiden, Slipknot, Sonata Arctica, and Rhapsody.', 'music'],
   ['03', 'Movies & TV', 'I like fantasy and science fiction stories.', 'fantasy'],
   ['04', 'Sports', 'I walk in the morning and listen to music or the news.', 'sports'],
   ['05', 'Activities', 'I like video games, computer design, and programming.', 'activities'],
@@ -29,13 +35,13 @@ const favoriteDetails = {
 };
 
 const favoriteImageData = {
-  food: { src: '/images/favorite-food.png', width: 768, height: 768, alt: 'Hamburger, empanadas, and hot chocolate' },
-  music: { src: '/images/favorite-music.png', width: 768, height: 768, alt: 'Victor’s music collection' },
-  fantasy: { src: '/images/favorite-fantasy.png', width: 768, height: 768, alt: 'Books, movies, and series collection' },
-  sports: { src: '/images/favorite-sports.png', width: 1024, height: 768, alt: 'Victor at a sports field' },
-  activities: { src: '/images/favorite-activities.png', width: 1024, height: 768, alt: 'Computer and design workspace' },
-  places: { src: '/images/favorite-places.png', width: 768, height: 768, alt: 'Travel photos from Santander' },
-  travel: { src: '/images/favorite-travel.png', width: 768, height: 768, alt: 'Travel plans for dream destinations' },
+  food: { src: '/images/favorite-food.jpg', width: 768, height: 768, alt: 'Hamburger, empanadas, and hot chocolate' },
+  music: { src: '/images/favorite-music.jpg', width: 768, height: 768, alt: 'Victor’s music collection' },
+  fantasy: { src: '/images/favorite-fantasy.jpg', width: 768, height: 768, alt: 'Books, movies, and series collection' },
+  sports: { src: '/images/favorite-sports.jpg', width: 1024, height: 768, alt: 'Victor at a sports field' },
+  activities: { src: '/images/favorite-activities.jpg', width: 1024, height: 768, alt: 'Computer and design workspace' },
+  places: { src: '/images/favorite-places.jpg', width: 768, height: 768, alt: 'Travel photos from Santander' },
+  travel: { src: '/images/favorite-travel.jpg', width: 768, height: 768, alt: 'Travel plans for dream destinations' },
 };
 const favoriteKeys = Object.keys(favoriteImageData);
 
@@ -61,18 +67,19 @@ app.innerHTML = `
     <section id="home" class="hero section-shell">
       <div class="hero-copy reveal">
         <p class="eyebrow">PERSONAL WEBSITE / SENA / 2026</p>
-        <h1><span class="hero-line">Hello,</span><span class="hero-line"><em>I'm Victor.</em></span></h1>
+        <h1><span class="hero-line">Hello,</span><span class="hero-line"><em>my name is</em></span></h1>
+        <p class="hero-name">Victor Alfonso Delgado Bolaños.</p>
         <p class="hero-role">I am a software development student.</p>
         <p class="hero-intro">I live in Ipiales, Colombia.<br />I like technology, design, and web pages.</p>
         <a class="text-link" href="#about">Learn more about me <span>↓</span></a>
       </div>
       <div class="hero-visual reveal">
         <div class="portrait-frame">
-          <img src="/images/profile.jpg" alt="Victor Alfonso Delgado Bolaños" onerror="this.style.display='none'; this.parentElement.classList.add('is-placeholder')" />
+          <img src="/images/profile.jpg" width="768" height="1024" fetchpriority="high" decoding="async" alt="Victor Alfonso Delgado Bolaños" onerror="this.style.display='none'; this.parentElement.classList.add('is-placeholder')" />
           <span class="image-fallback">YOUR<br />PHOTO</span>
         </div>
         <div class="hero-meta">
-          <img src="/images/sena-logo.png" alt="SENA logo" onerror="this.style.display='none'; this.nextElementSibling.hidden=false" />
+          <img src="/images/sena-logo.png" width="92" height="58" loading="lazy" decoding="async" alt="SENA logo" onerror="this.style.display='none'; this.nextElementSibling.hidden=false" />
           <span hidden>SENA<br />LOGO</span>
           <p>SENA<br />ADSO / CSCLI</p>
         </div>
@@ -87,13 +94,16 @@ app.innerHTML = `
           <div><span>Full name</span><strong>Victor Alfonso<br />Delgado Bolaños</strong></div>
           <div><span>Age</span><strong>I am 33</strong></div>
           <div><span>From / based in</span><strong>Ipiales, Nariño<br />Colombia</strong></div>
-          <div><span>Studies</span><strong>Software Analysis<br />&amp; Development (ADSO)</strong></div>
-          <div><span>Institution</span><strong>SENA — CSCLI</strong></div>
+          <div><span>Program</span><strong>Technology in Software Analysis<br />&amp; Development (ADSO)</strong></div>
+          <div><span>Institution</span><strong>Servicio Nacional de Aprendizaje<br />(SENA)</strong></div>
+          <div><span>Training center</span><strong>Centro Sur Colombiano de<br />Logística Internacional<br />Ipiales, Nariño</strong></div>
+          <div><span>Training record</span><strong>3532833</strong></div>
+          <div><span>Instructor</span><strong>Yenny Daniela<br />Guerrero Casanova</strong></div>
         </aside>
         <div class="prose reveal">
           <p class="lead">Hello! My name is Victor Alfonso Delgado Bolaños. I am 33 and I am from Ipiales, Colombia.</p>
           <p>I live with my mother, my grandparents, my uncles, my aunt, my cousin, and our two dogs.</p>
-          <p>I study Software Analysis and Development at SENA, at the CSCLI center.</p>
+          <p>I study this program at the CSCLI center in Ipiales.</p>
           <p>I chose this program because I like technology. I enjoy web development and digital tools.</p>
           <p>I am responsible, curious, and hardworking. I like to learn, solve problems, and work with other people.</p>
         </div>
@@ -117,9 +127,9 @@ app.innerHTML = `
     <section id="goals" class="content-section goals-section section-shell">
       <div class="section-heading reveal"><span class="section-number">03 /</span><h2>My<br /><em>future.</em></h2></div>
       <div class="goal-list">
-        <article class="goal reveal"><span class="goal-number">01</span><div><h3>Personal</h3><p>I want to keep learning and become a better person. I want to stay healthy with sports, especially swimming.</p><p>I also want to travel, see new places, and go to concerts.</p></div></article>
-        <article class="goal reveal"><span class="goal-number">02</span><div><h3>Academic</h3><p>I want to finish my ADSO program at SENA. I want to improve my English and learn more about web development, databases, and software.</p><p>Later, I want to take more courses or study at university.</p></div></article>
-        <article class="goal reveal"><span class="goal-number">03</span><div><h3>Professional</h3><p>I want to become a good software developer. I want to work on websites, apps, and digital projects.</p><p>I want to use programming and design to create useful solutions.</p></div></article>
+        <article class="goal goal--featured reveal"><span class="goal-number">01</span><div><h3>Personal</h3><p>I want to keep learning and become a better person. I want to stay healthy with sports, especially walking.</p><p>I also want to travel, see new places, and go to concerts.</p><img class="goal-image" src="/images/personal-goal.jpg" width="768" height="768" loading="lazy" decoding="async" alt="Victor walking on a mountain trail beside a lake" /></div></article>
+        <article class="goal goal--featured reveal"><span class="goal-number">02</span><div><h3>Academic</h3><p>I want to finish my ADSO program at SENA. I want to improve my English and learn more about web development, databases, and software.</p><p>Later, I want to take more courses or study at university.</p><img class="goal-image" src="/images/academic-goal.png" width="768" height="768" loading="lazy" decoding="async" alt="Students studying together in a library" /></div></article>
+        <article class="goal goal--featured reveal"><span class="goal-number">03</span><div><h3>Professional</h3><p>I want to become a good software developer. I want to work on websites, apps, and digital projects.</p><p>I want to use programming and design to create useful solutions.</p><img class="goal-image" src="/images/professional-goal.png" width="768" height="768" loading="lazy" decoding="async" alt="Students working together on a software design project" /></div></article>
       </div>
       <div class="vision reveal"><span class="section-number">MY FIVE-YEAR VISION</span><p>In five years, I want to work in technology, create good projects, speak better English, and grow as a person.</p><span class="vision-mark">→</span></div>
     </section>
@@ -127,7 +137,7 @@ app.innerHTML = `
     <section id="video" class="content-section video-section section-shell">
       <div class="section-heading reveal"><span class="section-number">04 /</span><h2>My<br /><em>video.</em></h2><p>Here I talk about my life and my goals.</p></div>
       <div class="video-frame reveal">
-        <video controls preload="metadata" poster="/images/video-poster.jpg"><source src="/videos/my-introduction.mp4" type="video/mp4" /></video>
+        <video controls preload="metadata"></video>
         <div class="video-fallback"><span class="play-mark">▶</span><p>My introduction video<br /><small>Add /videos/my-introduction.mp4 to play it.</small></p></div>
       </div>
       <p class="video-caption">In this video, I talk about me, my interests, my studies, and my goals.</p>
@@ -193,19 +203,20 @@ const spanishTranslations = new Map([
   ['.menu-toggle', ['Menú <span>+</span>']],
   ['.site-nav a', ['Sobre mí <span>01</span>', 'Mis favoritos <span>02</span>', 'Mis metas <span>03</span>', 'Mi video <span>04</span>']],
   ['.eyebrow', ['SITIO PERSONAL / SENA / 2026']],
-  ['.hero h1', ['Hola,<br /><em>soy Víctor.</em>']],
+  ['.hero h1', ['Hola,<br /><em>me llamo</em>']],
+  ['.hero-name', ['Víctor Alfonso Delgado Bolaños.']],
   ['.hero-role', ['Estudiante de desarrollo de software.']],
   ['.hero-intro', ['Desde Ipiales, Colombia.<br />Explorando la tecnología, la creatividad y las experiencias digitales.']],
   ['.text-link', ['Descubre más <span>↓</span>']],
   ['.hero-foot', ['<span>Desplázate para explorar</span><span>Ipiales, Nariño — Colombia</span><span>↓</span>']],
   ['#about .section-number', ['01 /']],
   ['#about h2', ['Un poco sobre<br /><em>mí.</em>']],
-  ['.fact-list div span', ['Nombre completo', 'Edad', 'De / vivo en', 'Estudios', 'Institución']],
-  ['.fact-list div strong', ['Víctor Alfonso<br />Delgado Bolaños', '33 años', 'Ipiales, Nariño<br />Colombia', 'Análisis y Desarrollo<br />de Software (ADSO)', 'SENA — CSCLI']],
+  ['.fact-list div span', ['Nombre completo', 'Edad', 'De / vivo en', 'Programa', 'Institución', 'Centro de formación', 'Ficha', 'Instructor']],
+  ['.fact-list div strong', ['Víctor Alfonso<br />Delgado Bolaños', '33 años', 'Ipiales, Nariño<br />Colombia', 'Tecnología en Análisis<br />y Desarrollo de Software (ADSO)', 'Servicio Nacional de Aprendizaje<br />(SENA)', 'Centro Sur Colombiano de<br />Logística Internacional<br />Ipiales, Nariño', '3532833', 'Yenny Daniela<br />Guerrero Casanova']],
   ['.prose p', [
     '¡Hola! Mi nombre es Víctor Alfonso Delgado Bolaños. Tengo 33 años y soy de Ipiales, Nariño, Colombia.',
     'Vivo con mi madre, mis abuelos, dos tíos, una tía, un primo y nuestros dos perros.',
-    'Soy estudiante del SENA y estudio Análisis y Desarrollo de Software (ADSO) en el Centro Sur Colombiano de Logística Internacional (CSCLI).',
+    'Estudio este programa en el Centro Sur Colombiano de Logística Internacional (CSCLI), en Ipiales.',
     'Elegí este programa porque me interesa cómo la tecnología puede mejorar procesos y resolver problemas del mundo real. Disfruto especialmente el desarrollo web y las herramientas digitales.',
     'Me considero analítico, responsable, perseverante y curioso. Me gusta planificar mi trabajo, resolver problemas y seguir aprendiendo. También valoro el respeto, la comunicación clara y el trabajo en equipo.',
   ]],
@@ -214,7 +225,7 @@ const spanishTranslations = new Map([
   ['.favorite-row .row-title', ['Comida y bebidas', 'Música', 'Películas y TV', 'Deportes', 'Actividades', 'Lugares favoritos', 'Destinos soñados']],
   ['.favorite-row .row-summary', [
     'Hamburguesas, empanadas y chocolate caliente con queso de hoja.',
-    'Metal pesado, metal épico y sonidos inspirados en los países nórdicos.',
+    'Mis bandas favoritas son Metallica, Iron Maiden, Slipknot, Sonata Arctica y Rhapsody.',
     'Mundos de fantasía y ciencia ficción, desde la Tierra Media hasta Futurama.',
     'Salir a caminar escuchando música o las noticias temprano en la mañana.',
     'Videojuegos, diseño asistido por computadora y programación.',
@@ -226,7 +237,7 @@ const spanishTranslations = new Map([
   ['#goals h2', ['Construyendo<br /><em>mi futuro.</em>']],
   ['.goal h3', ['Personal', 'Académico', 'Profesional']],
   ['.goal p', [
-    'Quiero seguir aprendiendo, mejorar mis habilidades y ser una mejor persona. Quiero mantener un estilo de vida saludable mediante el deporte, especialmente la natación, mientras equilibro mis proyectos y mi tiempo libre.',
+    'Quiero seguir aprendiendo, mejorar mis habilidades y ser una mejor persona. Quiero mantener un estilo de vida saludable mediante el deporte, especialmente caminar, mientras equilibro mis proyectos y mi tiempo libre.',
     'También sueño con viajar, conocer nuevos lugares y asistir a conciertos de mis bandas favoritas.',
     'Mi principal meta académica es completar con éxito mi programa ADSO en el SENA. Quiero mejorar mi inglés y seguir aprendiendo sobre desarrollo web, tecnologías emergentes, bases de datos y arquitectura de software.',
     'En el futuro, me gustaría continuar mi formación mediante cursos avanzados o estudios superiores.',
@@ -392,7 +403,7 @@ if (prefersReducedMotion) {
   heroTimeline
     .from('.site-header', { yPercent: -100, opacity: 0, duration: 0.8 })
     .from('.hero-line', { yPercent: 110, opacity: 0, stagger: 0.12, duration: 1, ease: 'power4.out' }, '-=0.3')
-    .from('.hero-role, .hero-intro, .hero-copy .text-link', { y: 22, stagger: 0.1, duration: 0.65 }, '-=0.45')
+    .from('.hero-name, .hero-role, .hero-intro, .hero-copy .text-link', { y: 22, stagger: 0.1, duration: 0.65 }, '-=0.45')
     .from('.hero-visual', { y: 30, duration: 0.7 }, '-=0.55')
     .from('.hero-foot', { y: 10, duration: 0.4 }, '-=0.25');
 
@@ -454,6 +465,15 @@ if (prefersReducedMotion) {
     ease: 'none',
     scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: 1 },
   });
+  gsap.from('.fact-list div', {
+    x: -18,
+    opacity: 0,
+    stagger: 0.08,
+    duration: 0.55,
+    ease: 'power2.out',
+    immediateRender: false,
+    scrollTrigger: { trigger: '.fact-list', start: 'top 78%', once: true },
+  });
   gsap.fromTo('.favorite-list', { y: 55 }, {
     y: -25,
     ease: 'none',
@@ -463,6 +483,15 @@ if (prefersReducedMotion) {
     y: -30,
     ease: 'none',
     scrollTrigger: { trigger: '#goals', start: 'top bottom', end: 'bottom top', scrub: 1 },
+  });
+  gsap.from('.goal-image', {
+    scale: 0.94,
+    opacity: 0,
+    stagger: 0.12,
+    duration: 0.8,
+    ease: 'power2.out',
+    immediateRender: false,
+    scrollTrigger: { trigger: '.goal-list', start: 'top 78%', once: true },
   });
 
   const responsiveAnimations = gsap.matchMedia();
@@ -493,6 +522,14 @@ if (prefersReducedMotion) {
     duration: 1.1,
     ease: 'power3.inOut',
     scrollTrigger: { trigger: '.video-frame', start: 'top 78%', once: true },
+  });
+  gsap.from('.video-caption', {
+    y: 14,
+    opacity: 0,
+    duration: 0.6,
+    ease: 'power2.out',
+    immediateRender: false,
+    scrollTrigger: { trigger: '.video-caption', start: 'top 88%', once: true },
   });
   gsap.from('.footer-name', {
     y: 35,
