@@ -137,8 +137,10 @@ app.innerHTML = `
     <section id="video" class="content-section video-section section-shell">
       <div class="section-heading reveal"><span class="section-number">04 /</span><h2>My<br /><em>video.</em></h2><p>Here I talk about my life and my goals.</p></div>
       <div class="video-frame reveal">
-        <video controls preload="metadata"></video>
-        <div class="video-fallback"><span class="play-mark">▶</span><p>My introduction video<br /><small>Add /videos/my-introduction.mp4 to play it.</small></p></div>
+        <video controls preload="metadata" playsinline>
+          <source src="/videos/my-introduction.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
       </div>
       <p class="video-caption">In this video, I talk about me, my interests, my studies, and my goals.</p>
     </section>
@@ -249,7 +251,6 @@ const spanishTranslations = new Map([
   ['#video .section-number', ['04 /']],
   ['#video h2', ['Conóceme<br /><em>a mí.</em>']],
   ['#video .section-heading > p', ['Una breve introducción a mi mundo.']],
-  ['.video-fallback p', ['Mi video de presentación<br /><small>Agrega /videos/my-introduction.mp4 para activar este reproductor.</small>']],
   ['.video-caption', ['Conóceme, mis intereses, mis estudios y mis metas futuras a través de esta breve presentación.']],
   ['.site-footer .section-number', ['GRACIAS POR VISITAR']],
   ['.footer-meta p', ['SITIO PERSONAL / SENA / 2026', 'IPIALES, NARIÑO — COLOMBIA']],
@@ -346,13 +347,10 @@ function updateFavorite(row) {
   });
 }
 
-const videoFrame = document.querySelector('.video-frame');
-const video = videoFrame.querySelector('video');
-video.addEventListener('loadeddata', () => videoFrame.classList.add('video-ready'));
-
 const progress = document.querySelector('.scroll-progress');
 const navLinks = document.querySelectorAll('.site-nav a');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobileLayout = window.matchMedia('(max-width: 760px)').matches;
 
 if (!prefersReducedMotion) {
   document.querySelectorAll('.favorite-row').forEach((row) => {
@@ -374,7 +372,7 @@ if (!prefersReducedMotion) {
   });
 }
 
-if (prefersReducedMotion) {
+if (prefersReducedMotion || isMobileLayout) {
   document.querySelectorAll('.reveal').forEach((element) => element.classList.add('is-visible'));
   document.querySelectorAll('.content-section .section-heading h2').forEach((heading) => {
     gsap.fromTo(heading, { opacity: 1 }, {
